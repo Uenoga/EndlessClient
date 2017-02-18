@@ -7,6 +7,7 @@ using EOLib.Domain.Account;
 using EOLib.Domain.Character;
 using EOLib.Domain.Chat;
 using EOLib.Domain.Chat.Commands;
+using EOLib.Domain.Item;
 using EOLib.Domain.Login;
 using EOLib.Domain.Map;
 using EOLib.Domain.Protocol;
@@ -50,6 +51,8 @@ namespace EOLib.Domain
 
             container.RegisterType<IMapCellStateProvider, MapCellStateProvider>()
                 .RegisterType<IUnlockDoorValidator, UnlockDoorValidator>();
+
+            container.RegisterType<IItemStringService, ItemStringService>();
 
             //resettable containers
             container.RegisterInstanceVaried<IResettable, PlayerInfoRepository>()
