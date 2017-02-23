@@ -25,7 +25,8 @@ namespace EndlessClient.Rendering
                 .RegisterType<ICharacterRendererFactory, CharacterRendererFactory>()
                 .RegisterType<INPCRendererFactory, NPCRendererFactory>()
                 .RegisterType<IRenderTargetFactory, RenderTargetFactory>()
-                .RegisterType<IMapRendererFactory, MapRendererFactory>();
+                .RegisterType<IMapRendererFactory, MapRendererFactory>()
+                .RegisterType<IMouseCursorRendererFactory, MouseCursorRendererFactory>();
 
             //character
             container

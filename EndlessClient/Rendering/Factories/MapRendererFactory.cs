@@ -24,6 +24,7 @@ namespace EndlessClient.Rendering.Factories
         private readonly IMapRenderDistanceCalculator _mapRenderDistanceCalculator;
         private readonly ICharacterRendererUpdater _characterRendererUpdater;
         private readonly IConfigurationProvider _configurationProvider;
+        private readonly IMouseCursorRendererFactory _mouseCursorRendererFactory;
         private readonly INPCRendererUpdater _npcRendererUpdater;
         private readonly IDoorStateUpdater _doorStateUpdater;
         private readonly IChatBubbleUpdater _chatBubbleUpdater;
@@ -38,7 +39,8 @@ namespace EndlessClient.Rendering.Factories
             INPCRendererUpdater npcRendererUpdater,
             IDoorStateUpdater doorStateUpdater,
             IChatBubbleUpdater chatBubbleUpdater,
-            IConfigurationProvider configurationProvider)
+            IConfigurationProvider configurationProvider,
+            IMouseCursorRendererFactory mouseCursorRendererFactory)
         {
             _endlessGameProvider = endlessGameProvider;
             _renderTargetFactory = renderTargetFactory;
@@ -51,10 +53,12 @@ namespace EndlessClient.Rendering.Factories
             _doorStateUpdater = doorStateUpdater;
             _chatBubbleUpdater = chatBubbleUpdater;
             _configurationProvider = configurationProvider;
+            _mouseCursorRendererFactory = mouseCursorRendererFactory;
         }
 
         public IMapRenderer CreateMapRenderer()
         {
+            var mouseCursorRenderer = _mouseCursorRendererFactory.Create();
             return new MapRenderer(_endlessGameProvider.Game,
                                    _renderTargetFactory,
                                    _mapEntityRendererProvider,
@@ -65,7 +69,8 @@ namespace EndlessClient.Rendering.Factories
                                    _npcRendererUpdater,
                                    _doorStateUpdater,
                                    _chatBubbleUpdater,
-                                   _configurationProvider);
+                                   _configurationProvider,
+                                   mouseCursorRenderer);
         }
     }
 }
